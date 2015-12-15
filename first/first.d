@@ -125,3 +125,11 @@ double pearson(double[] x, double[] y) {
 
 	return 0;
 }
+
+unittest {
+	auto corr = pearson([1, 2, 3], [10, 20, 29]);
+	assert(corr - 0.999539 < 0.00001);
+
+	corr = pearson([2, 3, 3], [6, 15, 29]);
+	assert(corr - 0.797017 < 0.00001);
+}
