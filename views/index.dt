@@ -1,25 +1,10 @@
-doctype html
-html
-	head
-		script(src="performance_evaluation.js")
-		script.
-			function computeFirst() {
-				var time = document.getElementById('time').value;
-				var lambda = document.getElementById('lambda').value;
-				var sigma = document.getElementById('sigma').value;
-				var mu = document.getElementById('mu').value;
+extends layout
 
-				ITest.computeFirst(time, lambda, sigma, mu, function(r) {
-					document.getElementById('res').innerHTML = r;					
-				})
-			}
+block scripts
 
-	body
-		h1 First task
-		input#time
-		input#lambda
-		input#sigma
-		input#mu
-		button(onclick="computeFirst()") Compute first
-		p Result:
-			span#res
+block content
+	div.collection.purple-text
+		- foreach (li; nav)
+			- auto name = li[0];
+			- auto href = li[1];
+			a.collection-item(href= href)= name
