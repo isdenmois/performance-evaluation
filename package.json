@@ -1,0 +1,29 @@
+{
+  "name": "performance_evaluation",
+  "version": "1.0.0",
+  "description": "Home work for performance evaluation",
+  "main": "source/app.d",
+  "scripts": {
+    "test": "dub test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isdenmois/performance-evaluation-ng.git"
+  },
+  "keywords": [
+    "dlang",
+    "materialize",
+    "vibe.d"
+  ],
+  "author": "D. Moiseev <isdenmois@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isdenmois/performance-evaluation-ng/issues"
+  },
+  "homepage": "https://github.com/isdenmois/performance-evaluation-ng#readme",
+  "dependencies": {
+    "canvasjs": "^1.8.1",
+    "jquery": "^2.1.4",
+    "materialize-css": "^0.97.3"
+  }
+}
