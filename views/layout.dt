@@ -1,0 +1,23 @@
+﻿doctype html
+html
+	head
+		title=title
+		link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+		link(href="materialize-css/dist/css/materialize.min.css", type="text/css", rel="stylesheet", media="screen,projection")
+		link(href="css/style.css", type="text/css", rel="stylesheet", media="screen,projection")
+		script(src="jquery/dist/jquery.min.js")
+		script(src="materialize-css/dist/js/materialize.min.js")
+		block scripts
+	body
+		nav.purple.lighten-1
+			div.nav-wrapper.container
+				ul
+					- foreach (li; nav)
+						- auto name = li[0];
+						- auto href = li[1];
+						li
+							a(href= href)= name
+		div.container
+			div.section
+				h2.center= title
+			block content
