@@ -2,3 +2,7 @@
 bin
 obj
 *.dproj
+node_modules
+performance_evaluation*
+.dub
+dub.selections.json
