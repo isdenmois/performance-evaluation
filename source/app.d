@@ -3,6 +3,7 @@ import vibe.web.rest;
 import vibe.d;
 import first.first;
 import second.second;
+import std.json;
 
 
 // Defines a RESTful API.
@@ -11,7 +12,7 @@ interface PVIface {
 	string computeFirst(uint time, double lambda, double sigma, double mu);
 
 	@method(HTTPMethod.GET)
-	string computeSecond(uint k, double task, double[5][] params);
+	string computeSecond(uint k, double task_lambda, double TR1_sigma, double TR1_mu, double TR2, double TR3, double TR4_sigma, double TR4_mu, double TR5_sigma, double TR5_mu);
 }
 
 class PV : PVIface {
@@ -21,8 +22,8 @@ class PV : PVIface {
 	}
 
 	@method(HTTPMethod.GET)
-	string computeSecond(uint k, double task, double[5][] params) {
-		return second_process(k, task, params);
+	string computeSecond(uint k, double task_lambda, double TR1_sigma, double TR1_mu, double TR2, double TR3, double TR4_sigma, double TR4_mu, double TR5_sigma, double TR5_mu) {
+		return second_process(k, task_lambda, TR1_sigma, TR1_mu, TR2, TR3, TR4_sigma, TR4_mu, TR5_sigma, TR5_mu);
 	}
 }
 
@@ -41,7 +42,7 @@ void first_route(HTTPServerRequest req, HTTPServerResponse res) {
 void second_route(HTTPServerRequest req, HTTPServerResponse res) {
 	string[][] nav = [["Задача 1", "/first"], ["Задача 2", "/second"]];
 	string title = "Задача 2. Модульная компьютерная система.";
-	res.render!("first.dt", title, nav);
+	res.render!("second.dt", title, nav);
 }
 
 shared static this()
