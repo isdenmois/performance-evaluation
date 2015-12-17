@@ -70,19 +70,33 @@ unittest {
 	s.addTask(t4);
 	s.addTask(t5);
 
+	Task[] ended;
 	// Start: [1, 2 | 3 || 4 | 5]
-	s.tick;
-	// -> [1, 2, 3 ||||] -> 4, 5
-	s.tick;
-	// -> [2, 3 | 1 |||]
-	s.tick;
-	// -> [2, 3 | 1 |||]
-	s.tick;
-	// -> [3 | 2 |||] -> 1
-	s.tick;
-	// -> [| 2 |||] -> 3
-	s.tick;
-	// -> [||||] -> 2
-	s.tick;
-	// -> [||||]
+
+	ended = s.tick; // -> [1, 2, 3 ||||] -> 4, 5
+	assert(ended.length == 2);
+	assert(ended[0] == t4);
+	assert(ended[1] == t5);
+
+	ended = s.tick; // -> [2, 3 | 1 |||]
+	assert(ended.length == 0);
+
+	ended = s.tick; // -> [2, 3 | 1 |||]
+	assert(ended.length == 0);
+
+	ended = s.tick; // -> [3 | 2 |||] -> 1
+	assert(ended.length == 1);
+	assert(ended[0] == t1);
+
+	ended = s.tick; // -> [| 2 |||] -> 3
+	assert(ended.length == 1);
+	assert(ended[0] == t3);
+
+	ended = s.tick; // -> [||||] -> 2
+	assert(ended.length == 1);
+	assert(ended[0] == t2);
+
+	ended = s.tick; // -> [||||]
+	assert(ended.length == 0);
+
 }
