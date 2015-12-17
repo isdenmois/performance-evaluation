@@ -9,27 +9,57 @@ block scripts
 
 block content
 	div.section
-		form#first-form
+		form#second-form
 			div.row.card
 				div.card-content
 					span.card-title Условия моделирования
 					div.input-field
-						input.validate(type="text")#time
+						input.validate(type="text")#k-value
 						label(for="time") Обработать заданий
 			div.row.card
 				div.card-content
-					span.card-title Экспоненциальное распределение
+					span.card-title Интервалы потока заданий InStream. Экспоненциальное распределение
 					div.input-field
 						input.validate(type="text")#lambda
 						label(for="lambda") Значение лямбда
 			div.row.card
 				div.card-content
-					span.card-title.col.s12 Распределение |гаусса|
+					span.card-title.col.s12 TR1. Распределение |гаусса|
 					div.input-field.col.s6
-						input.validate(type="text")#sigma
+						input.validate(type="text")#sigma-1
 						label(for="sigma") Значение сигма
 					div.input-field.col.s6
-						input.validate(type="text")#mu
+						input.validate(type="text")#mu-1
+						label(for="mu") Значение мю
+			div.row.card
+				div.card-content
+					span.card-title TR2. Распределение Рэлея
+					div.input-field
+						input.validate(type="text")#sigma-2
+						label(for="lambda") Значение сигма
+			div.row.card
+				div.card-content
+					span.card-title TR3. Распределение Эрланга 3 порядка
+					div.input-field
+						input.validate(type="text")#teta-3
+						label(for="lambda") Значение тета
+			div.row.card
+				div.card-content
+					span.card-title.col.s12 TR4. Логнормальное распределение
+					div.input-field.col.s6
+						input.validate(type="text")#sigma-4
+						label(for="sigma") Значение сигма
+					div.input-field.col.s6
+						input.validate(type="text")#mu-4
+						label(for="mu") Значение мю
+			div.row.card
+				div.card-content
+					span.card-title.col.s12 TR5. Логнормальное распределение
+					div.input-field.col.s6
+						input.validate(type="text")#sigma-5
+						label(for="sigma") Значение сигма
+					div.input-field.col.s6
+						input.validate(type="text")#mu-5
 						label(for="mu") Значение мю
 			div.row
 				div.input-field
@@ -41,10 +71,6 @@ block content
 				div.card-content
 					span.card-title Время моделирования
 					p#time-mod
-			div.correlation.card.col.offset-s0.offset-m1
-				div.card-content
-					span.card-title Коэффициент корреляции
-					p#correlation
 			div.card.col.s12
 				div.card-content
-				div#w.chart
+				div#w-chart.chart
