@@ -17,8 +17,8 @@ class Task {
 	 */
 	Task tick() {
 		if (!this.components.empty) {
-			if (this.components.back.tick <= 0) {
-				this.components.removeBack;
+			if (this.components.front.tick <= 0) {
+				this.components.removeFront;
 				return this;
 			}
 		}
@@ -28,5 +28,11 @@ class Task {
 		}
 		return null;
 	}
-}
 
+	uint type() {
+		if (this.components.empty) {
+			return 0;
+		}
+		return this.components.front.type;
+	}
+}
