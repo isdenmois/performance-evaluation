@@ -18,49 +18,49 @@ block content
 						label(for="time") Обработать заданий
 			div.row.card
 				div.card-content
-					span.card-title Интервалы потока заданий InStream. Экспоненциальное распределение
+					span.card-title Интервалы потока заданий InStream. (Экспоненциальное распределение)
 					div.input-field
 						input.validate(type="text")#lambda
-						label(for="lambda") Значение лямбда
+						label(for="lambda") Значение &lambda; (Коэффициент масштаба)
 			div.row.card
 				div.card-content
 					span.card-title.col.s12 TR1. Распределение |гаусса|
 					div.input-field.col.s6
-						input.validate(type="text")#sigma-1
-						label(for="sigma") Значение сигма
-					div.input-field.col.s6
 						input.validate(type="text")#mu-1
-						label(for="mu") Значение мю
+						label(for="mu-1") Значение &mu; (Математическое ожидание)
+					div.input-field.col.s6
+						input.validate(type="text")#sigma-1
+						label(for="sigma-1") Значение &sigma; (Коэффициент масштаба)
 			div.row.card
 				div.card-content
 					span.card-title TR2. Распределение Рэлея
 					div.input-field
 						input.validate(type="text")#sigma-2
-						label(for="lambda") Значение сигма
+						label(for="sigma-2") Значение &sigma;
 			div.row.card
 				div.card-content
 					span.card-title TR3. Распределение Эрланга 3 порядка
 					div.input-field
 						input.validate(type="text")#teta-3
-						label(for="lambda") Значение тета
+						label(for="teta-3") Значение &theta;
 			div.row.card
 				div.card-content
 					span.card-title.col.s12 TR4. Логнормальное распределение
 					div.input-field.col.s6
-						input.validate(type="text")#sigma-4
-						label(for="sigma") Значение сигма
-					div.input-field.col.s6
 						input.validate(type="text")#mu-4
-						label(for="mu") Значение мю
+						label(for="sigma-4") Значение &mu;
+					div.input-field.col.s6
+						input.validate(type="text")#sigma-4
+						label(for="sigma-4") Значение &sigma;
 			div.row.card
 				div.card-content
 					span.card-title.col.s12 TR5. Логнормальное распределение
 					div.input-field.col.s6
-						input.validate(type="text")#sigma-5
-						label(for="sigma") Значение сигма
-					div.input-field.col.s6
 						input.validate(type="text")#mu-5
-						label(for="mu") Значение мю
+						label(for="mu-5") Значение &mu;
+					div.input-field.col.s6
+						input.validate(type="text")#sigma-5
+						label(for="sigma-5") Значение &sigma;
 			div.row
 				div.input-field
 					button(type="submit", name="action").btn.waves-effect.waves-light Провести моделирование

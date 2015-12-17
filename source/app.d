@@ -12,7 +12,7 @@ interface PVIface {
 	string computeFirst(uint time, double lambda, double mu, double sigma);
 
 	@method(HTTPMethod.GET)
-	string computeSecond(uint k, double task_lambda, double TR1_sigma, double TR1_mu, double TR2, double TR3, double TR4_sigma, double TR4_mu, double TR5_sigma, double TR5_mu);
+	string computeSecond(uint k, double task_lambda, double TR1_mu, double TR1_sigma, double TR2, double TR3, double TR4_mu, double TR4_sigma, double TR5_mu, double TR5_sigma);
 }
 
 class PV : PVIface {
@@ -22,8 +22,8 @@ class PV : PVIface {
 	}
 
 	@method(HTTPMethod.GET)
-	string computeSecond(uint k, double task_lambda, double TR1_sigma, double TR1_mu, double TR2, double TR3, double TR4_sigma, double TR4_mu, double TR5_sigma, double TR5_mu) {
-		return second_process(k, task_lambda, TR1_sigma, TR1_mu, TR2, TR3, TR4_sigma, TR4_mu, TR5_sigma, TR5_mu);
+	string computeSecond(uint k, double task_lambda, double TR1_mu, double TR1_sigma, double TR2, double TR3, double TR4_mu, double TR4_sigma, double TR5_mu, double TR5_sigma) {
+		return second_process(k, task_lambda, TR1_mu, TR1_sigma, TR2, TR3, TR4_mu, TR4_sigma, TR5_mu, TR5_sigma);
 	}
 }
 

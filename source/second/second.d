@@ -7,13 +7,13 @@ import std.datetime;
 import std.conv;
 import utils;
 
-string second_process(uint k, double task_lambda, double TR1_sigma, double TR1_mu, double TR2, double TR3, double TR4_sigma, double TR4_mu, double TR5_sigma, double TR5_mu) {
+string second_process(uint k, double task_lambda, double TR1_mu, double TR1_sigma, double TR2, double TR3, double TR4_mu, double TR4_sigma, double TR5_mu, double TR5_sigma) {
 	Random task_stream = new Exponential(task_lambda);
-	Random first_stream = new GaussianAbs(TR1_sigma, TR1_mu);
+	Random first_stream = new GaussianAbs(TR1_mu, TR1_sigma);
 	Random second_stream = new Rayleigh(TR2);
 	Random third_stream = new E3(TR3);
-	Random fourth_stream = new Lognormal(TR4_sigma, TR4_mu);
-	Random fifth_stream = new Lognormal(TR5_sigma, TR5_mu);
+	Random fourth_stream = new Lognormal(TR4_mu, TR4_sigma);
+	Random fifth_stream = new Lognormal(TR5_mu, TR5_sigma);
 
 	Server server = new Server();
 	double next_task = task_stream.next;
