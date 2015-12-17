@@ -4,7 +4,7 @@
   "description": "Home work for performance evaluation",
   "main": "source/app.d",
   "scripts": {
-    "test": "dub test"
+    "test": "dmd -unittest main_test.d source/{first/*.d,second/*.d,utils.d,randoms} && ./main-test"
   },
   "repository": {
     "type": "git",
