@@ -26,9 +26,9 @@ class Gaussian : Random {
 	private double second;
 	private bool isReady = false;
 
-	this(double sigma, double mu) {
-		this.sigma = sigma;
+	this(double mu, double sigma) {
 		this.mu = mu;
+		this.sigma = sigma;
 	}
 
 	protected double generate() {
@@ -59,8 +59,8 @@ class Gaussian : Random {
 
 class GaussianPlus : Gaussian {
 	
-	this(double sigma, double mu) {
-		super(sigma, mu);
+	this(double mu, double sigma) {
+		super(mu, sigma);
 	}
 
 	override public double next() {
@@ -75,8 +75,8 @@ class GaussianPlus : Gaussian {
 
 class GaussianAbs : Gaussian {
 
-	this(double sigma, double mu) {
-		super(sigma, mu);
+	this(double mu, double sigma) {
+		super(mu, sigma);
 	}
 
 	override double next() {
@@ -111,11 +111,12 @@ class E3 : Random {
 
 class Lognormal : Gaussian {
 
-	this(double sigma, double mu) {
-		super(sigma, mu);
+	this(double mu, double sigma) {
+		super(mu, sigma);
 	}
 
 	override double next() {
 		return super.next.exp;
 	}
 }
+
