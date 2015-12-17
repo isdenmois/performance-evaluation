@@ -6,11 +6,11 @@ class server {
 	Computer[] computers;
 
 	this() {
-		computers ~= Computer(1, 1);
-		computers ~= Computer(2, 2);
-		computers ~= Computer(3, 3);
-		computers ~= Computer(4, 1);
-		computers ~= Computer(5, 2);
+		computers ~= new Computer(1, 1);
+		computers ~= new Computer(2, 2);
+		computers ~= new Computer(3, 3);
+		computers ~= new Computer(4, 1);
+		computers ~= new Computer(5, 2);
 	}
 
 	void addTask(Task t) {
