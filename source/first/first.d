@@ -7,6 +7,7 @@ import std.container;
 import std.datetime;
 import std.conv;
 import std.math;
+import utils;
 
 string first_process(uint time, double lambda, double mean, double dev) {
 	GaussianPlus potok = new GaussianPlus(mean, dev);
@@ -80,12 +81,13 @@ string first_process(uint time, double lambda, double mean, double dev) {
 
 	JSONValue result = [
 		"result": "success",
-		"time": sw.peek().msecs.to!string
 	];
-	result.object["length"] = JSONValue(length);
+	result.object["length"] = convertList(length);
+	result.object["pbusy"] = convertList(pbusy);
 	result.object["correlation"] = JSONValue(pearson(delta, sigma));
-	result.object["pbusy"] = JSONValue(pbusy);
 	sw.stop;
+	result.object["time"] = JSONValue(sw.peek().msecs.to!string);
+
 	return result.toString;
 }
 
