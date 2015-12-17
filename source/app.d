@@ -2,21 +2,27 @@ module main;
 import vibe.web.rest;
 import vibe.d;
 import first.first;
+import second.second;
 
 
-// Defines a simple RESTful API
-interface PV {
+// Defines a RESTful API.
+interface PVIface {
 	@method(HTTPMethod.GET)
 	string computeFirst(uint time, double lambda, double sigma, double mu);
+
+	@method(HTTPMethod.GET)
+	string computeSecond(uint k, double task, double[5][] params);
 }
 
-// Local implementation that will be provided by the server
-class Test : PV {
-	import std.stdio;
-	float computeSum(float a, float b) { return a + b; }
-	void postToConsole(string text) { writeln(text); }
+class PV : PVIface {
+	@method(HTTPMethod.GET)
 	string computeFirst(uint time, double lambda, double sigma, double mu) {
 		return first_process(time, lambda, sigma, mu);
+	}
+
+	@method(HTTPMethod.GET)
+	string computeSecond(uint k, double task, double[5][] params) {
+		return second_process(k, task, params);
 	}
 }
 
@@ -32,9 +38,10 @@ void first_route(HTTPServerRequest req, HTTPServerResponse res) {
 	res.render!("first.dt", title, nav);
 }
 
-void bower(scope HTTPServerRequest req, scope HTTPServerResponse res, ref string rr) {
-	import std.stdio;
-	writeln(rr);
+void second_route(HTTPServerRequest req, HTTPServerResponse res) {
+	string[][] nav = [["Задача 1", "/first"], ["Задача 2", "/second"]];
+	string title = "Задача 2. Модульная компьютерная система.";
+	res.render!("first.dt", title, nav);
 }
 
 shared static this()
@@ -44,26 +51,22 @@ shared static this()
 	import vibe.http.router : URLRouter;
 	import vibe.http.server : HTTPServerSettings, listenHTTP, staticTemplate;
 
-	// Set up the proper base URL, so that the JavaScript client
-	// will find our REST service
+	// REST settings for js.
 	auto restsettings = new RestInterfaceSettings;
 	restsettings.baseURL = URL("http://127.0.0.1:8080/");
 
 	auto router = new URLRouter;
-	// Serve the generated JavaScript client at /performance_evaluation.js
-	router.get("/performance_evaluation.js", serveRestJSClient!PV(restsettings));
-	// Serve an example page at /
-	// The page will use the test.js script to issue calls to the
-	// REST service.
-	router.get("/", &index);
-	router.get("/first", &first_route);
+	router
+		.get("/performance_evaluation.js", serveRestJSClient!PVIface(restsettings))
+		.get("/", &index)
+		.get("/first", &first_route)
+		.get("/second", &second_route)
+		// Serve static files.
+		.get("*", serveStaticFiles("./node_modules"))
+		.get("*", serveStaticFiles("./public"));
 
-	// Serve static files.
-	router.get("*", serveStaticFiles("./node_modules"));
-	router.get("*", serveStaticFiles("./public"));
-
-	// Finally register the REST interface defined above
-	router.registerRestInterface(new Test, restsettings);
+	// Finally register the REST class.
+	router.registerRestInterface(new PV);
 
 	auto settings = new HTTPServerSettings;
 	settings.port = 8080;
