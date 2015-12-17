@@ -13,4 +13,3 @@ class Component {
     return --this.sigma;
   }
 }
-
