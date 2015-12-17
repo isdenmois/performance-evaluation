@@ -2,9 +2,6 @@ module second.computer;
 import second.component;
 import second.task;
 import std.container.dlist;
-import std.algorithm.mutation;
-import std.typecons;
-import std.conv;
 
 class Computer {
 	public uint resource;
@@ -31,8 +28,8 @@ class Computer {
 	private uint moveFromBuffer() {
 		uint count = 0;
 		while (currentTasks.length < size && !buffer.empty) {
-			currentTasks ~= buffer.back;
-			buffer.removeBack;
+			currentTasks ~= buffer.front;
+			buffer.removeFront;
 			count++;
 		}
 
@@ -41,15 +38,17 @@ class Computer {
 
 	public Task[] tick() {
 		Task[] result;
-		int[] toDelete;
+		Task[] newResult;
 
 		foreach(i, task; this.currentTasks) {
 			if (task.tick() !is null) {
 				result ~= task;
-				toDelete ~= i;
+			}
+			else {
+				newResult ~= task;
 			}
 		}
-		currentTasks.remove(toDelete);
+		currentTasks = newResult;
 		moveFromBuffer();
 		return result;
 	}
@@ -83,7 +82,7 @@ unittest {
 	//Test ticks.
 	Task[] ended = c.tick;
 	assert(c.currentTaskCount == 3);
-	assert(ended.length == 2);
+	assert(ended.length == 1);
 
 	ended = c.tick;
 	assert(c.currentTaskCount == 1);
@@ -96,5 +95,9 @@ unittest {
 	ended = c.tick;
 	assert(c.currentTaskCount == 0);
 	assert(ended.length == 1);
+
+	ended = c.tick;
+	assert(c.currentTaskCount == 0);
+	assert(ended.length == 0);
 
 }
