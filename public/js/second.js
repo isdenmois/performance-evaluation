@@ -19,7 +19,7 @@ function computeSecond(e) {
 	var TR5_sigma = $('#sigma-5').val();
 	var TR5_mu = $('#mu-5').val();
 
-	PVIface.computeSecond(k, lambda, TR1_sigma, TR1_mu, TR2, TR3, TR4_sigma, TR4_mu, TR5_sigma, TR5_mu, secondResult);
+	PVIface.computeSecond(k, lambda, TR1_mu, TR1_sigma, TR2, TR3, TR4_mu, TR4_sigma, TR5_mu, TR5_sigma, secondResult);
 }
 
 $(window).load(function() {
