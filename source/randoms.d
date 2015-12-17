@@ -2,19 +2,25 @@
 import std.random;
 import std.math;
 
-class Exponential {
+interface Random {
+
+	//  Generate random number.
+	double next();
+}
+
+class Exponential : Random {
 	private double lambda;
 
 	this(double lambda) {
 		this.lambda = lambda;
 	}
 
-	double next() {
+	override double next() {
 		return - log(uniform01()) / this.lambda;
 	}
 }
 
-class Gaussian {
+class Gaussian : Random {
 	private double sigma;
 	private double mu;
 	private double second;
@@ -46,7 +52,7 @@ class Gaussian {
 		return x * w;
 	}
 
-	public double next() {
+	override double next() {
 		return this.generate * this.sigma + this.mu;
 	}
 }
@@ -67,3 +73,49 @@ class GaussianPlus : Gaussian {
 	}
 }
 
+class GaussianAbs : Gaussian {
+
+	this(double sigma, double mu) {
+		super(sigma, mu);
+	}
+
+	override double next() {
+		return super.next.exp;
+	}
+}
+
+class Rayleigh : Random {
+	private double sigma;
+
+	this(double sigma) {
+		this.sigma = sigma;
+	}
+
+	override double next() {
+		return this.sigma * sqrt(-2 * log(uniform01()));
+	}
+}
+
+class E3 : Random {
+	private double lambda;
+
+	this(double lambda) {
+		this.lambda = lambda;
+	}
+
+	override double next() {
+		double u = uniform01() * uniform01() * uniform01();
+		return -(1 / this.lambda) * log(u);
+	}
+}
+
+class Lognormal : Gaussian {
+
+	this(double sigma, double mu) {
+		super(sigma, mu);
+	}
+
+	override double next() {
+		return super.next.exp;
+	}
+}
