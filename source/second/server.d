@@ -21,7 +21,25 @@ class Server {
 	}
 
 	Task[] tick() {
+		Task[] result;
+		Task[] calculated;
 
+		// Compute.
+		foreach (computer; computers) {
+			calculated ~= computer.tick;
+		}
+
+		// Reallocate.
+		foreach (task; calculated) {
+			if (task.type) {
+				this.addTask(task);
+			}
+			else {
+				result ~= task;
+			}
+		}
+
+		return result;
 	}
 }
 
