@@ -1,4 +1,4 @@
-﻿module source.server;
+﻿module second.server;
 import second.task;
 import second.computer;
 
