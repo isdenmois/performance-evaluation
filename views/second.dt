@@ -1,0 +1,50 @@
+﻿extends layout
+
+block scripts
+	script(src="/performance_evaluation.js")
+	script(src="/canvasjs/dist/canvasjs.min.js")
+	script(src="/canvasjs/dist/jquery.canvasjs.min.js")
+	script(src="/js/renderChart.js")
+	script(src="/js/second.js")
+
+block content
+	div.section
+		form#first-form
+			div.row.card
+				div.card-content
+					span.card-title Условия моделирования
+					div.input-field
+						input.validate(type="text")#time
+						label(for="time") Обработать заданий
+			div.row.card
+				div.card-content
+					span.card-title Экспоненциальное распределение
+					div.input-field
+						input.validate(type="text")#lambda
+						label(for="lambda") Значение лямбда
+			div.row.card
+				div.card-content
+					span.card-title.col.s12 Распределение |гаусса|
+					div.input-field.col.s6
+						input.validate(type="text")#sigma
+						label(for="sigma") Значение сигма
+					div.input-field.col.s6
+						input.validate(type="text")#mu
+						label(for="mu") Значение мю
+			div.row
+				div.input-field
+					button(type="submit", name="action").btn.waves-effect.waves-light Провести моделирование
+						i.material-icons.right send
+	div.section
+		div.result.row.hidden
+			div.time.card.col
+				div.card-content
+					span.card-title Время моделирования
+					p#time-mod
+			div.correlation.card.col.offset-s0.offset-m1
+				div.card-content
+					span.card-title Коэффициент корреляции
+					p#correlation
+			div.card.col.s12
+				div.card-content
+				div#w.chart
