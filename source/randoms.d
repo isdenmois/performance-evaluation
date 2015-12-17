@@ -66,10 +66,10 @@ class GaussianPlus : Gaussian {
 	override public double next() {
 		double result;
 		do {
-			result = this.generate;
+			result = this.next;
 		} while (result <= 0);
 
-		return result * this.sigma + this.mu;
+		return result;
 	}
 }
 
@@ -80,7 +80,7 @@ class GaussianAbs : Gaussian {
 	}
 
 	override double next() {
-		return super.next.exp;
+		return super.next.abs;
 	}
 }
 
