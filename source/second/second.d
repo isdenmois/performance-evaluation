@@ -2,9 +2,13 @@
 import randoms;
 import second.task;
 import second.server;
+import std.json;
+import std.datetime;
+import std.conv;
+import utils;
 
-string second_process(uint k, double task, double[5][] params) {
-	Random task_stream = new Exponential(task);
+string second_process(uint k, double task_lambda, double[5][] params) {
+	Random task_stream = new Exponential(task_lambda);
 	Random first_stream = new GaussianAbs(params[0][0], params[0][1]);
 	Random second_stream = new Rayleigh(params[1][0]);
 	Random third_stream = new E3(params[2][0]);
@@ -28,13 +32,13 @@ string second_process(uint k, double task, double[5][] params) {
 		if (next_task <= 0) {
 			next_task = task_stream.next;
 
-			Task task = new Task();
-			task.addComponent(1, first_stream.next);
-			task.addComponent(3, second_stream.next);
-			task.addComponent(2, third_stream.next);
-			task.addComponent(4, fourth_stream.next);
-			task.addComponent(2, fifth_stream.next);
-			server.addTask(task);
+			Task t = new Task();
+			t.addComponent(1, first_stream.next);
+			t.addComponent(3, second_stream.next);
+			t.addComponent(2, third_stream.next);
+			t.addComponent(4, fourth_stream.next);
+			t.addComponent(2, fifth_stream.next);
+			server.addTask(t);
 		}
 	}
 
