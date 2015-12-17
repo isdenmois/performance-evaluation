@@ -9,7 +9,7 @@ import std.json;
 // Defines a RESTful API.
 interface PVIface {
 	@method(HTTPMethod.GET)
-	string computeFirst(uint time, double lambda, double sigma, double mu);
+	string computeFirst(uint time, double lambda, double mu, double sigma);
 
 	@method(HTTPMethod.GET)
 	string computeSecond(uint k, double task_lambda, double TR1_sigma, double TR1_mu, double TR2, double TR3, double TR4_sigma, double TR4_mu, double TR5_sigma, double TR5_mu);
@@ -17,8 +17,8 @@ interface PVIface {
 
 class PV : PVIface {
 	@method(HTTPMethod.GET)
-	string computeFirst(uint time, double lambda, double sigma, double mu) {
-		return first_process(time, lambda, sigma, mu);
+	string computeFirst(uint time, double lambda, double mu, double sigma) {
+		return first_process(time, lambda, mu, sigma);
 	}
 
 	@method(HTTPMethod.GET)

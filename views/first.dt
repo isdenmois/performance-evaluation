@@ -21,16 +21,16 @@ block content
 					span.card-title Экспоненциальное распределение
 					div.input-field
 						input.validate(type="text")#lambda
-						label(for="lambda") Значение лямбда
+						label(for="lambda") Значение &lambda; (Коэффициент масштаба)
 			div.row.card
 				div.card-content
 					span.card-title.col.s12 Распределение гаусса+
 					div.input-field.col.s6
-						input.validate(type="text")#sigma
-						label(for="sigma") Значение сигма
-					div.input-field.col.s6
 						input.validate(type="text")#mu
-						label(for="mu") Значение мю
+						label(for="mu") Значение &mu; (Математическое ожидание)
+					div.input-field.col.s6
+						input.validate(type="text")#sigma
+						label(for="sigma") Значение &sigma; (Коэффициент масштаба)
 			div.row
 				div.input-field
 					button(type="submit", name="action").btn.waves-effect.waves-light Провести моделирование

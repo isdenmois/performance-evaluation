@@ -15,7 +15,7 @@ function computeFirst(e) {
 	var sigma = $('#sigma', this).val();
 	var mu = $('#mu', this).val();
 
-	PVIface.computeFirst(time, lambda, sigma, mu, firstResult);
+	PVIface.computeFirst(time, lambda, mu, sigma, firstResult);
 }
 
 $(window).load(function() {
