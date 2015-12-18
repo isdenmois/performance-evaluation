@@ -6,6 +6,7 @@ import std.container.dlist;
 class Computer {
 	public uint resource;
 	private uint size;
+	public double load;
 
 	private DList!Task buffer;
 	private Task[] currentTasks;
@@ -39,6 +40,7 @@ class Computer {
 	public Task[] tick() {
 		Task[] result;
 		Task[] newResult;
+		this.load += this.currentTasks.length / this.size;
 
 		foreach(i, task; this.currentTasks) {
 			if (task.tick() !is null) {
@@ -61,15 +63,15 @@ class Computer {
 unittest {
 	// Create test data.
 	Computer c = new Computer(1, 3);
-	Task t = new Task();
+	Task t = new Task(3);
 	t.addComponent(1, 1);
-	Task t1 = new Task();
+	Task t1 = new Task(4);
 	t1.addComponent(1, 2);
-	Task t2 = new Task();
+	Task t2 = new Task(5);
 	t2.addComponent(1, 2);
-	Task t3 = new Task();
+	Task t3 = new Task(5);
 	t3.addComponent(1, 1);
-	Task t4 = new Task();
+	Task t4 = new Task(6);
 	t4.addComponent(1, 2);
 
 	// Test addition.
@@ -99,5 +101,4 @@ unittest {
 	ended = c.tick;
 	assert(c.currentTaskCount == 0);
 	assert(ended.length == 0);
-
 }

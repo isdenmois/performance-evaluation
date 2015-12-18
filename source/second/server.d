@@ -41,27 +41,36 @@ class Server {
 
 		return result;
 	}
+
+	public double[] getLoad(double totalTime) {
+		double[] load;
+		foreach (computer; this.computers) {
+			load ~= computer.load / totalTime;
+		}
+
+		return load;
+	}
 }
 
 unittest {
 	Server s = new Server();
 
-	Task t1 = new Task();
+	Task t1 = new Task(1);
 	t1.addComponent(1, 2);
 	t1.addComponent(2, 2);
 
-	Task t2 = new Task();
+	Task t2 = new Task(2);
 	t2.addComponent(1, 2);
 	t2.addComponent(2, 2);
 
-	Task t3 = new Task();
+	Task t3 = new Task(3);
 	t3.addComponent(2, 1);
 	t3.addComponent(1, 1);
 
-	Task t4 = new Task();
+	Task t4 = new Task(4);
 	t4.addComponent(4, 1);
 
-	Task t5 = new Task();
+	Task t5 = new Task(5);
 	t5.addComponent(5, 1);
 
 	s.addTask(t1);
