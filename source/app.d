@@ -54,7 +54,7 @@ shared static this()
 
 	// REST settings for js.
 	auto restsettings = new RestInterfaceSettings;
-	restsettings.baseURL = URL("http://127.0.0.1:8080/");
+	restsettings.baseURL = URL("http://127.0.0.1:8000/");
 
 	auto router = new URLRouter;
 	router
@@ -70,11 +70,11 @@ shared static this()
 	router.registerRestInterface(new PV);
 
 	auto settings = new HTTPServerSettings;
-	settings.port = 8080;
+	settings.port = 8000;
 	settings.bindAddresses = ["::1", "127.0.0.1"];
 	listenHTTP(settings, router);
 
-	logInfo("Please open http://127.0.0.1:8080/ in your browser.");
+	logInfo("Please open http://127.0.0.1:8000/ in your browser.");
 }
 
 void main() {

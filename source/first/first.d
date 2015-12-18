@@ -21,6 +21,10 @@ string first_process(uint time, double lambda, double mean, double dev) {
 	double[] pbusy = [];
 	double[] sigma = [];
 
+	if (time > 10) {
+		return "{\"test\": 1}";
+	}
+
 	bool flag = false;
 	int currentTime = 0;
 
@@ -31,6 +35,12 @@ string first_process(uint time, double lambda, double mean, double dev) {
 
 	sw.start();
 	while (time--) {
+		Task task = server.tick;
+		if (task !is null) {
+			sigma ~= task.sigma;
+			delta ~= task.startTime - time;
+		}
+
 		if (server.isFree) {
 			if (flag) {
 				currentTime--;
@@ -49,18 +59,13 @@ string first_process(uint time, double lambda, double mean, double dev) {
 		currentTime++;
 
 		if (length.length < server.bufferSize + 1) {
-			length ~=0;
+			length.length = server.bufferSize + 1;
 		}
-		length[server.bufferSize]++;
+		length[server.bufferSize] = isNaN(length[server.bufferSize]) ? 1 : length[server.bufferSize] + 1;
 
 		if (next_task-- <= 0) {
 			next_task = potok.next;
 			server.addTask(new Task(waits.next, time));
-		}
-		Task task = server.tick;
-		if (task !is null) {
-			sigma ~= task.sigma;
-			delta ~= task.startTime - time;
 		}
 	}
 	double prev = 0;
@@ -135,3 +140,4 @@ unittest {
 	corr = pearson([2, 3, 3], [6, 15, 29]);
 	assert(corr - 0.797017 < 0.00001);
 }
+

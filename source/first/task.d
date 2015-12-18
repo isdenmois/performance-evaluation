@@ -1,4 +1,5 @@
 module first.task;
+import std.stdio;
 
 class Task {
 	private double time;
@@ -23,20 +24,22 @@ class Task {
 
 unittest {
 	Task t = new Task(3, 10);
+	int startI = t.i;
+
 	assert(t.tick == 2);
 	assert(t.tick == 1);
 	assert(t.tick <= 0);
 	assert(t.sigma == 3);
 	assert(t.startTime == 10);
 
-	assert(t.i == 0);
-	assert(new Task(1, 1).i == 1);
+	assert(t.i - startI == 0);
+	assert(new Task(1, 1).i - startI == 1);
 
 	t = new Task(8, 1);
-	assert(t.i == 2);
+	assert(t.i - startI == 2);
 
 	Task t1 = new Task(10, 10);
-	assert(t1.i == 3);
+	assert(t1.i - startI == 3);
 
 	assert(t.sigma == 8);
 	assert(t.tick == 7);
@@ -50,3 +53,4 @@ unittest {
 	t.tick;
 	assert(t.tick <= 0);
 }
+
