@@ -1,0 +1,10 @@
+{
+	"name": "performance_evaluation",
+	"description": "Home work for performance evaluation.",
+	"authors": ["Denis Moiseev"],
+	"homepage": "https://github.com/isdenmois/performance-evaluation-ng",
+	"license": "GPL-2.0",
+	"dependencies": {
+		"vibe-d": "~>0.7.23"
+	}
+}

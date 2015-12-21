@@ -1,5 +1,0 @@
-name "performance_evaluation"
-description "Home work for performance evaluation."
-copyright "Copyright © 2015, isden"
-authors "isden"
-dependency "vibe-d" version="~>0.7.23"
