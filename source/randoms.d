@@ -66,7 +66,7 @@ class GaussianPlus : Gaussian {
 	override public double next() {
 		double result;
 		do {
-			result = this.next;
+			result = super.next;
 		} while (result <= 0);
 
 		return result;
@@ -120,3 +120,10 @@ class Lognormal : Gaussian {
 	}
 }
 
+unittest {
+	Random r = new Exponential(0.5);
+	assert(r.next > 0 && r.next < 10);
+
+	r = new GaussianPlus(3, 1);
+	assert(r.next > 0 && r.next < 10);
+}

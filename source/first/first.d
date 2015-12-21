@@ -21,10 +21,6 @@ string first_process(uint time, double lambda, double mean, double dev) {
 	double[] pbusy = [];
 	double[] sigma = [];
 
-	if (time > 10) {
-		return "{\"test\": 1}";
-	}
-
 	bool flag = false;
 	int currentTime = 0;
 

@@ -55,7 +55,7 @@ class Computer {
 		return result;
 	}
 
-	public int currentTaskCount() {
+	public ulong currentTaskCount() {
 		return currentTasks.length;
 	}
 }
