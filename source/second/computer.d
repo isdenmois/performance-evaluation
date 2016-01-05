@@ -14,6 +14,7 @@ class Computer {
 	this(uint resource, uint size) {
 		this.resource = resource;
 		this.size = size;
+		this.load = 0;
 	}
 
 	public bool addTask(Task task) {

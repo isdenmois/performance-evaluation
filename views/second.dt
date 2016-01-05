@@ -71,6 +71,26 @@ block content
 				div.card-content
 					span.card-title Время моделирования
 					p#time-mod
+			div.load.card.col
+				div.card-content
+					span.card-title Загрузка модуля 1
+					p#load-1
+			div.load.card.col
+				div.card-content
+					span.card-title Загрузка модуля 2
+					p#load-2
+			div.load.card.col
+				div.card-content
+					span.card-title Загрузка модуля 3
+					p#load-3
+			div.load.card.col
+				div.card-content
+					span.card-title Загрузка модуля 4
+					p#load-4
+			div.load.card.col
+				div.card-content
+					span.card-title Загрузка модуля 5
+					p#load-5
 			div.card.col.s12
 				div.card-content
 				div#w-chart.chart

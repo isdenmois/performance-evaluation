@@ -3,6 +3,13 @@ function secondResult(r) {
 	$('.result.hidden').removeClass('hidden');
 	renderChart('w-chart', 'Распределение w', r.w);
 	$('#time-mod').html(r.time);
+	if(r.load && r.load.length == 5) {
+		$('#load-1').html(r.load[0]);
+		$('#load-2').html(r.load[1]);
+		$('#load-3').html(r.load[2]);
+		$('#load-4').html(r.load[3]);
+		$('#load-5').html(r.load[4]);
+	}
 }
 
 function computeSecond(e) {
