@@ -1,7 +1,7 @@
 function secondResult(r) {
 	r = JSON.parse(r);
 	$('.result.hidden').removeClass('hidden');
-	renderChart('w-chart', 'Распределение w', r.w);
+	renderChart('w-chart', 'Распределение суммы периодов ожидания', 'Время ожидания', r.w);
 	$('#time-mod').html(r.time);
 	if(r.load && r.load.length == 5) {
 		$('#load-1').html(r.load[0]);
@@ -10,6 +10,9 @@ function secondResult(r) {
 		$('#load-4').html(r.load[3]);
 		$('#load-5').html(r.load[4]);
 	}
+	$('#avg-time').html(r.avgTime);
+	$('#avg-calc').html(r.avgCalc);
+	$('#avg-w').html(r.avgW);
 }
 
 function computeSecond(e) {
