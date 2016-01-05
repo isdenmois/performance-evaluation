@@ -7,9 +7,11 @@ import std.conv;
 class Task {
 	private DList!Component components;
 	private int startTime;
+	private int wTime;
 
 	this(int startTime) {
 		this.startTime = startTime;
+		this.wTime = startTime;
 	}
 
 	/**
@@ -17,12 +19,11 @@ class Task {
 	 */
 	void addComponent(uint resource, double sigma) {
 		this.components.insert(new Component(resource, sigma));
-
 		int ticktime = to!int(float(sigma));
-		if (ticktime - sigma > 0) {
+		if (sigma - ticktime > 0) {
 			ticktime++;
 		}
-		this.startTime += ticktime;
+		this.wTime += ticktime;
 	}
 
 	/**
@@ -52,11 +53,15 @@ class Task {
 		return this.components.front.type;
 	}
 
+	public int getTime(int endTime) {
+		return endTime - startTime;
+	}
+
 	/**
 	 * Calculate current w time.
 	 */
 	public int getW(int endTime) {
-		return endTime - startTime;
+		return endTime - wTime;
 	}
 }
 

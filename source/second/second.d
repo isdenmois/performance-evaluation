@@ -22,6 +22,9 @@ string second_process(uint k, double task_lambda, double TR1_mu, double TR1_sigm
 	StopWatch sw;
 	int time;
 	int startK = k;
+	double avgTime = 0;
+	double avgW = 0;
+	double avgCalc = 0;
 
 	sw.start();
 	for (time = 0; k > 0; time++, next_task--) {
@@ -37,6 +40,12 @@ string second_process(uint k, double task_lambda, double TR1_mu, double TR1_sigm
 				if (w.length < wtime + 1) {
 					w.length = wtime + 1;
 				}
+				
+				int ftime = t.getTime(time);
+
+				avgW += cast(double) wtime / startK;
+				avgTime += cast(double) ftime / startK;
+				avgCalc += cast(double) (ftime - wtime) / startK;
 
 				w[wtime] = isNaN(w[wtime]) ? 1 : w[wtime] + 1;
 			}
@@ -72,6 +81,9 @@ string second_process(uint k, double task_lambda, double TR1_mu, double TR1_sigm
 	sw.stop;
 	result.object["time"] = JSONValue(sw.peek().msecs.to!string);
 	result.object["load"] = JSONValue(server.getLoad(time));
+	result.object["avgW"] = JSONValue(avgW);
+	result.object["avgTime"] = JSONValue(avgTime);
+	result.object["avgCalc"] = JSONValue(avgCalc);
 
 	return result.toString;
 }
