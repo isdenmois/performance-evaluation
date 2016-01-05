@@ -24,7 +24,7 @@ block content
 						label(for="lambda") Значение &lambda; (Коэффициент масштаба)
 			div.row.card
 				div.card-content
-					span.card-title.col.s12 TR1. Распределение |гаусса|
+					span.card-title.col.s12 &sigma;1 (TR1). Распределение |гаусса|
 					div.input-field.col.s6
 						input.validate(type="text")#mu-1
 						label(for="mu-1") Значение &mu; (Математическое ожидание)
@@ -33,19 +33,19 @@ block content
 						label(for="sigma-1") Значение &sigma; (Коэффициент масштаба)
 			div.row.card
 				div.card-content
-					span.card-title TR2. Распределение Рэлея
+					span.card-title &sigma;2 (TR3). Распределение Рэлея
 					div.input-field
 						input.validate(type="text")#sigma-2
 						label(for="sigma-2") Значение &sigma;
 			div.row.card
 				div.card-content
-					span.card-title TR3. Распределение Эрланга 3 порядка
+					span.card-title &sigma;3 (TR2). Распределение Эрланга 3 порядка
 					div.input-field
 						input.validate(type="text")#teta-3
-						label(for="teta-3") Значение &theta;
+						label(for="teta-3") Значение &lambda;
 			div.row.card
 				div.card-content
-					span.card-title.col.s12 TR4. Логнормальное распределение
+					span.card-title.col.s12 &sigma;4 (TR4). Логнормальное распределение
 					div.input-field.col.s6
 						input.validate(type="text")#mu-4
 						label(for="sigma-4") Значение &mu;
@@ -54,7 +54,7 @@ block content
 						label(for="sigma-4") Значение &sigma;
 			div.row.card
 				div.card-content
-					span.card-title.col.s12 TR5. Логнормальное распределение
+					span.card-title.col.s12 &sigma;5 (TR2). Логнормальное распределение
 					div.input-field.col.s6
 						input.validate(type="text")#mu-5
 						label(for="mu-5") Значение &mu;
@@ -67,30 +67,54 @@ block content
 						i.material-icons.right send
 	div.section
 		div.result.row.hidden
-			div.time.card.col
+			div.time.card.col.s12
 				div.card-content
 					span.card-title Время моделирования
-					p#time-mod
-			div.load.card.col
+					p
+						span#time-mod
+						span &nbsp;мс
+			div.load.card.col.s12
 				div.card-content
 					span.card-title Загрузка модуля 1
-					p#load-1
-			div.load.card.col
+					p
+						span#load-1
+						span %
+			div.load.card.col.s12
 				div.card-content
 					span.card-title Загрузка модуля 2
-					p#load-2
-			div.load.card.col
+					p
+						span#load-2
+						span %
+			div.load.card.col.s12
 				div.card-content
 					span.card-title Загрузка модуля 3
-					p#load-3
-			div.load.card.col
+					p
+						span#load-3
+						span %
+			div.load.card.col.s12
 				div.card-content
 					span.card-title Загрузка модуля 4
-					p#load-4
-			div.load.card.col
+					p
+						span#load-4
+						span %
+			div.load.card.col.s12
 				div.card-content
 					span.card-title Загрузка модуля 5
-					p#load-5
+					p
+						span#load-5
+						span %
+			div.avg.card.col.s12
+				div.card-content
+					span.card-title Среднее время обработки заявки сервером
+					p#avg-time
+			div.avg.card.col.s12
+				div.card-content
+					span.card-title Среднее время простоя в очереди
+					p#avg-w
+			div.avg.card.col.s12
+				div.card-content
+					span.card-title Среднее время обработки заявки вычислителем
+					p#avg-calc
 			div.card.col.s12
 				div.card-content
 				div#w-chart.chart
