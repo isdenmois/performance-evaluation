@@ -1,8 +1,8 @@
 ﻿function firstResult(r) {
 	r = JSON.parse(r);
 	$('.result.hidden').removeClass('hidden');
-	renderChart('length', 'Распределение длины очереди', r.length);
-	renderChart('pbusy', 'Распределение времени непрерывной занятости', r.pbusy);
+	renderChart('length', 'Распределение длины очереди', 'Длина очереди', r.length);
+	renderChart('pbusy', 'Распределение времени непрерывной занятости', 'Время', r.pbusy);
 	$('#time-mod').html(r.time);
 	$('#correlation').html(r.correlation);
 }
